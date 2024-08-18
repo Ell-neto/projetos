@@ -26,3 +26,8 @@ Na **atividade 10** é para escrever na tela um número 10 vezes.
 Na **atividade 11** o usuário digita 5 números e obtemos a soma deles. Na **atividade 12** criamos uma simples tabuada. Na **atividade 13** iniciamos as variáveis para a soma dos números e a contagem, e o código só para quando o usuário digitar o valor 0.
 
 Na **atividade 14** é o cálculo do fatorial e para isso, iniciamos a contagem do fatorial. E na **atividade 15**, que é a Sequência de Fibonacci, também é necessário iniciar o programa com os primeiros dois números da sequência de Fibonacci, depois imprimindo o número atual, calculamos o próximo número da sequência e por fim, atualizamos. Pois a ideia é imprimir os 10 primeiros valores da sequência.
+
+## Instruções
+
+Fazemos a instalação do VS CODE, após isso, fazemos a instalação da versão do Node mais atualizado e também a criação de pastas, pois já deixarei meus projetos e atividades em um único lugar (exceto o projeto final).
+Dei um Git init para criar um novo repositório do Git e com isso fiz só a instalação do prompt, pois escolhi fazer uso de valores de entrada que o usuário digita. Reforço que, o que mencionei acima, o meus códigos não rodam diretamente no terminal de saída (output) do VS Code, pois não permite interações de entrada do usuário. Em vez disso, estou usando o terminal integrado do VS Code para executar os scripts, ou seja, usando *node atvs.js* no terminal, após o usuário estar no diretório correto.
