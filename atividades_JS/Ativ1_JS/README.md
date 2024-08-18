@@ -3,7 +3,7 @@
 ## Nota
 Meus códigos não rodam diretamente no terminal de saída (output) do VS Code, pois não permite interações de entrada do usuário. Em vez disso, estou usando o terminal integrado do VS Code para executar os scripts!!!
 
-PDF para consulta da atividade 1, [clique aqui]([atividades_JS/Ativ1_JS/atv1.pdf](https://github.com/Ell-neto/projetos/blob/main/atividades_JS/Ativ1_JS/atv1.pdf)).
+PDF para consulta da atividade 1, ([clique aqui](atividades_JS/Ativ1_JS/atv1.pdf)).
 
 
 ## Descrição
