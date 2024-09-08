@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questão 2</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+                body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+            margin: 0;
+        }
+
+        .questao2-page {
+            width: 100%; 
+            background-color: rgb(142, 240, 199);
+            text-align: center;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 70%;
+            padding: 12px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        a.btn-qst.voltar {
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .code-container-qst2 {
+            margin: 20px auto; /* Centraliza o contêiner */
+            width: 50%;
+            background-color: #fdfdfd;
+        }
+
+        .user-input-qst2, .output-qst2 {
+            margin: 20px auto; /* Centraliza o contêiner */
+            width: 70%;
+            border-radius: 40px;
+            background-color: #fafcc0;
+        }
+    </style>
+</head>
+<body class="questao2-page">
+    <div class="container">
+        <h1>Manipulação de Objetos - Questão 2</h1>
+        <p>Objetivo: Crie um objeto livro com propriedades título, autor, anoPublicacao e gênero. Verifique se a propriedade editora existe no objeto usando <code>for in</code>. Se não existir, adicione essa propriedade ao objeto.</p>
+
+        <div class="code-container-qst2">
+            <div class="input-group">
+                <label for="titulo">Título:</label>
+                <input type="text" id="titulo" placeholder="Digite o título do livro">
+            </div>
+            <div class="input-group">
+                <label for="autor">Autor:</label>
+                <input type="text" id="autor" placeholder="Digite o autor do livro">
+            </div>
+            <div class="input-group">
+                <label for="anoPublicacao">Ano de Publicação:</label>
+                <input type="text" id="anoPublicacao" placeholder="Digite o ano de publicação">
+            </div>
+            <div class="input-group">
+                <label for="genero">Gênero:</label>
+                <input type="text" id="genero" placeholder="Digite o gênero do livro">
+            </div>
+            <button class="btn-qst" onclick="executarCodigo()">Executar Código</button>
+        </div>
+
+        <div class="user-input-qst2" id="user-input-qst2"></div>
+        <div class="output-qst2" id="output-qst2"></div>
+
+        <a href="/atividades2/" class="btn-qst voltar">Voltar para a página principal</a>
+    </div>
+
+    <script>
+        function executarCodigo() {
+            const titulo = document.getElementById('titulo').value;
+            const autor = document.getElementById('autor').value;
+            const anoPublicacao = document.getElementById('anoPublicacao').value;
+            const genero = document.getElementById('genero').value;
+
+            const livro = {
+                titulo: titulo,
+                autor: autor,
+                anoPublicacao: parseInt(anoPublicacao),
+                genero: genero
+            };
+
+            // Exibe a entrada do usuário
+            const userInputDiv = document.getElementById('user-input-qst2');
+            userInputDiv.textContent = "Entrada do Usuário: \n" + JSON.stringify(livro, null, 2);
+            userInputDiv.style.display = 'block';
+
+            // Verifica se a propriedade 'editora' existe usando for...in
+            let hasEditora = false;
+            for (let prop in livro) {
+                if (prop === 'editora') {
+                    hasEditora = true;
+                    break;
+                }
+            }
+
+            // Adiciona a propriedade 'editora' se não existir
+            if (!hasEditora) {
+                livro.editora = 'Companhia das Letras';
+            }
+
+            // Exibe a saída final (objeto com a editora adicionada)
+            const outputDiv = document.getElementById('output-qst2');
+            outputDiv.textContent = "Resultado Final: \n" + JSON.stringify(livro, null, 2);
+            outputDiv.style.display = 'block';
+        }
+    </script>
+</body>
+</html>

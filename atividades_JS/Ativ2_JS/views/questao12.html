@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questão 12</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: rgb(142, 240, 199);
+            margin: 0;
+        }
+
+
+        .code-container, .output{
+            margin: 20px auto;
+            width: 60%;
+        }
+
+        input[type="text"], input[type="number"] {
+            width: 25%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <div class="questao-page">
+        <h1>Combinação de Estruturas - Questão 12</h1>
+        <p>Objetivo: Crie um array de objetos estoque, onde cada objeto tem produto, quantidade e mínimo. Use <code>forEach</code> para atualizar a quantidade dos produtos que estão abaixo do mínimo, duplicando suas quantidades.</p>
+
+        <div class="code-container">
+            <pre id="code">
+function executarCodigo() {
+    const estoque = [
+        // O array será preenchido com os valores fornecidos pelo usuário
+    ];
+
+    estoque.forEach(produto => {
+        if (produto.quantidade < produto.minimo) {
+            produto.quantidade *= 2; // Duplica a quantidade se estiver abaixo do mínimo
+        }
+    });
+
+    console.log(estoque);
+}
+        </pre>
+
+        <!-- Entrada para o nome do produto, quantidade e mínimo -->
+        <div class="input-group">
+            <label for="produto">Nome do Produto:</label>
+            <input type="text" id="produto" required>
+        </div>
+        <div class="input-group">
+            <label for="quantidade">Quantidade:</label>
+            <input type="number" id="quantidade" min="0" required>
+        </div>
+        <div class="input-group">
+            <label for="minimo">Quantidade Mínima:</label>
+            <input type="number" id="minimo" min="1" required>
+        </div>
+
+            <button class="btn-qst" onclick="adicionarAoEstoque()">Adicionar ao Estoque</button>
+            <button class="btn-qst" onclick="executarCodigo()">Executar Código</button>
+        </div>
+
+        <!-- Exibição dos itens no estoque -->
+        <div class="carrinho" id="estoque">
+            <h3>Itens no Estoque:</h3>
+            <ul id="listaEstoque"></ul>
+        </div>
+
+        <!-- Exibição do resultado -->
+        <div class="output" id="output"></div>
+
+        <a href="/atividades2/" class="btn-qst voltar">Voltar para a página principal</a>
+    </div>
+
+    <script>
+        const estoque = [];
+
+        function adicionarAoEstoque() {
+            const produto = document.getElementById('produto').value;
+            const quantidade = parseInt(document.getElementById('quantidade').value);
+            const minimo = parseInt(document.getElementById('minimo').value);
+
+            if (produto && quantidade >= 0 && minimo > 0) {
+                estoque.push({ produto: produto, quantidade: quantidade, minimo: minimo });
+
+                // Limpa os campos para nova entrada
+                document.getElementById('produto').value = '';
+                document.getElementById('quantidade').value = '';
+                document.getElementById('minimo').value = '';
+
+                // Exibe o estoque atualizado
+                atualizarEstoque();
+
+                alert(`Produto ${produto} adicionado ao estoque!`);
+            } else {
+                alert('Preencha todos os campos corretamente.');
+            }
+        }
+
+        function atualizarEstoque() {
+            const estoqueDiv = document.getElementById('estoque');
+            const listaEstoque = document.getElementById('listaEstoque');
+            listaEstoque.innerHTML = '';
+
+            // Exibe os itens no estoque
+            estoque.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = `Produto: ${item.produto} - Quantidade: ${item.quantidade}, Mínimo: ${item.minimo}`;
+                listaEstoque.appendChild(li);
+            });
+
+            estoqueDiv.style.display = 'block';
+        }
+
+        function executarCodigo() {
+            if (estoque.length === 0) {
+                alert('Nenhum produto adicionado ao estoque.');
+                return;
+            }
+
+            // Duplica as quantidades dos produtos que estão abaixo do mínimo
+            estoque.forEach(produto => {
+                if (produto.quantidade < produto.minimo) {
+                    produto.quantidade *= 2;
+                }
+            });
+
+            const outputDiv = document.getElementById('output');
+            outputDiv.innerHTML = '<h3>Estoque Atualizado:</h3>';
+            estoque.forEach(item => {
+                outputDiv.innerHTML += `<p>Produto: ${item.produto} - Quantidade: ${item.quantidade}, Mínimo: ${item.minimo}</p>`;
+            });
+            outputDiv.style.display = 'block';
+        }
+    </script>
+</body>
+</html>

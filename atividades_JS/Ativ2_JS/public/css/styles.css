@@ -1,0 +1,106 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    text-align: center;
+}
+
+.index-page {
+    background-color: rgb(235, 192, 184);
+}
+
+.questao-page {
+    background-color: rgb(142, 240, 199);
+}
+
+h1 {
+    color: black;
+}
+
+p, label, input {
+    font-size: 18px;
+    color: #000000;
+    margin: 10px 0;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 20px;
+    font-size: 18px;
+    color: #fff;
+    background-color: #333;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.btn:hover {
+    background-color: #555;
+}
+
+.code-container {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    overflow-x: auto;
+}
+.code-container pre {
+    margin: 0;
+    padding: 0;
+    background: #fafcc0;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    overflow-x: auto;
+}
+.output, .user-input {
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #fafcc0;
+    min-height: 50px;
+    white-space: pre-wrap;
+    display: none;
+}
+.btn-qst {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: rgb(152, 183, 240);
+    color: white;
+    border: none;
+    border-radius: 44px;
+    cursor: pointer;
+}
+.btn-qst:hover {
+    background-color: rgb(235, 192, 184);
+}
+
+.btn-qst-extra {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: rgb(253, 153, 107);
+    color: white;
+    border: none;
+    border-radius: 44px;
+    cursor: pointer;
+}
+.input-group {
+    margin: 10px 0;
+}
+
+.carrinho {
+    margin: 20px auto;
+    width: 50%;
+    list-style-type: none
+}
+
+ul {
+    list-style-type: none; 
+    padding-left: 0; 
+}

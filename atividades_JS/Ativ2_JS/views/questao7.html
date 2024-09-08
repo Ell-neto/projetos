@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questão 7</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+            margin: 0;
+        }
+
+        .code-container, .output {
+            margin: 20px auto;
+            width: 60%;
+        }
+
+        input[type="text"], input[type="number"] {
+            width: 20%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <div class="questao-page">
+        <h1>Manipulação de Arrays de Objetos - Questão 7</h1>
+        <p>Objetivo: Crie um array de objetos produtos, onde cada objeto tem nome, preço, e desconto. Use <code>forEach</code> para aplicar um desconto de 10% em todos os produtos e exibir o novo preço.</p>
+
+        <div class="code-container">
+            <pre id="code">
+function executarCodigo() {
+    const produtos = [
+        // O array será preenchido com os valores fornecidos pelo usuário
+    ];
+
+    produtos.forEach(produto => {
+        const descontoAdicional = produto.preco * 0.10;
+        produto.preco -= descontoAdicional;
+        console.log(\`Nome: \${produto.nome}, Novo Preço: \${produto.preco.toFixed(2)}\`);
+    });
+}
+        </pre>
+
+            <label for="totalProdutos">Número de produtos:</label>
+            <input type="number" id="totalProdutos" min="1" required>
+        </div>
+
+        <!-- Entrada para o nome, preço e desconto dos produtos -->
+        <div id="produtos-input-container"></div>
+
+        <div class="code-container">
+            <button class="btn-qst" onclick="gerarCamposProdutos()">Gerar campos para os produtos</button>
+            <button class="btn-qst" onclick="executarCodigo()">Executar Código</button>
+        </div>
+
+        <div class="output" id="output"></div>
+
+        <a href="/atividades2/" class="btn-qst voltar">Voltar para a página principal</a>
+    </div>
+
+    <script>
+        let totalProdutos = 0;
+
+        function gerarCamposProdutos() {
+            totalProdutos = parseInt(document.getElementById('totalProdutos').value);
+            const produtosContainer = document.getElementById('produtos-input-container');
+            produtosContainer.innerHTML = ''; // Limpa o conteúdo anterior
+
+            for (let i = 1; i <= totalProdutos; i++) {
+                const produtoGroup = document.createElement('div');
+                produtoGroup.classList.add('input-group');
+                produtoGroup.innerHTML = `
+                    <label for="nome${i}">Nome do produto ${i}:</label>
+                    <input type="text" id="nome${i}" required>
+                    <label for="preco${i}">Preço:</label>
+                    <input type="number" id="preco${i}" min="0" required>
+                    <label for="desconto${i}">Desconto (%):</label>
+                    <input type="number" id="desconto${i}" min="0" required>
+                `;
+                produtosContainer.appendChild(produtoGroup);
+            }
+        }
+
+        function executarCodigo() {
+            const produtos = [];
+
+            for (let i = 1; i <= totalProdutos; i++) {
+                const nome = document.getElementById(`nome${i}`).value;
+                let preco = parseFloat(document.getElementById(`preco${i}`).value);
+                const desconto = parseFloat(document.getElementById(`desconto${i}`).value) / 100;
+
+                // Aplicando desconto informado pelo usuário
+                preco -= preco * desconto;
+
+                produtos.push({ nome: nome, preco: preco });
+            }
+
+            let resultado = '';
+
+            // Aplicando desconto adicional de 10% em cada produto
+            produtos.forEach(produto => {
+                const descontoAdicional = produto.preco * 0.10;
+                produto.preco -= descontoAdicional;
+                resultado += `Nome: ${produto.nome}, Novo Preço: ${produto.preco.toFixed(2)}\n`;
+            });
+
+            const outputDiv = document.getElementById('output');
+            outputDiv.textContent = resultado.length ? resultado : 'Nenhum produto inserido.';
+            outputDiv.style.display = 'block';
+        }
+    </script>
+</body>
+</html>

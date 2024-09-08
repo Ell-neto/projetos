@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questão 10</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: rgb(142, 240, 199);
+            margin: 0;
+        }
+
+        .code-container, .output {
+            margin: 20px auto;
+            width: 60%;
+        }
+
+        input[type="text"], input[type="number"] {
+            width: 25%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <div class="questao-page">
+        <h1>Combinação de Estruturas - Questão 10</h1>
+        <p>Objetivo: Crie um array de objetos vendas, onde cada objeto tem produto, quantidade e valor. Use <code>forEach</code> para calcular o valor total de vendas de todos os produtos.</p>
+
+        <div class="code-container">
+            <pre id="code">
+function executarCodigo() {
+    const vendas = [
+        // O array será preenchido com os valores fornecidos pelo usuário
+    ];
+
+    let valorTotalVendas = 0;
+    vendas.forEach(venda => {
+        valorTotalVendas += venda.quantidade * venda.valor;
+    });
+
+    console.log(`Valor total das vendas: R$ ${valorTotalVendas.toFixed(2)}`);
+}
+        </pre>
+
+        <!-- Entrada para o nome do produto, quantidade e valor -->
+        <div class="input-group">
+            <label for="produto">Nome do Produto:</label>
+            <input type="text" id="produto" required>
+        </div>
+        <div class="input-group">
+            <label for="quantidade">Quantidade:</label>
+            <input type="number" id="quantidade" min="1" required>
+        </div>
+        <div class="input-group">
+            <label for="valor">Valor (R$):</label>
+            <input type="number" id="valor" min="0.01" step="0.01" required>
+        </div>
+
+            <button class="btn-qst" onclick="adicionarAoCarrinho()">Adicionar ao Carrinho</button>
+            <button class="btn-qst" onclick="executarCodigo()">Executar Código</button>
+
+    </div>
+
+            <!-- Exibição dos itens no carrinho -->
+            <div class="carrinho" id="carrinho">
+                <h3>Itens no Carrinho:</h3>
+                <ul id="listaCarrinho"></ul>
+            </div>
+
+        <!-- Exibição do resultado -->
+        <div class="output" id="output"></div>
+
+        <a href="/atividades2/" class="btn-qst voltar">Voltar para a página principal</a>
+    </div>
+
+    <script>
+         const vendas = [];
+
+function adicionarAoCarrinho() {
+    const produto = document.getElementById('produto').value;
+    const quantidade = parseInt(document.getElementById('quantidade').value);
+    const valor = parseFloat(document.getElementById('valor').value);
+
+    if (produto && quantidade > 0 && valor > 0) {
+        vendas.push({ produto: produto, quantidade: quantidade, valor: valor });
+
+        // Limpa os campos para nova entrada
+        document.getElementById('produto').value = '';
+        document.getElementById('quantidade').value = '';
+        document.getElementById('valor').value = '';
+
+        // Exibe o carrinho atualizado
+        atualizarCarrinho();
+
+        alert(`Produto ${produto} adicionado ao carrinho!`);
+    } else {
+        alert('Preencha todos os campos corretamente.');
+    }
+}
+
+function atualizarCarrinho() {
+    const carrinhoDiv = document.getElementById('carrinho');
+    const listaCarrinho = document.getElementById('listaCarrinho');
+    listaCarrinho.innerHTML = '';
+
+    // Exibe os itens no carrinho
+    vendas.forEach(venda => {
+        const item = document.createElement('li');
+        item.textContent = `${venda.produto} - Quantidade: ${venda.quantidade}, Valor: R$ ${venda.valor.toFixed(2)}`;
+        listaCarrinho.appendChild(item);
+    });
+
+    carrinhoDiv.style.display = 'block';
+}
+
+function executarCodigo() {
+    if (vendas.length === 0) {
+        alert('Nenhum produto adicionado ao carrinho.');
+        return;
+    }
+
+    let valorTotalVendas = 0;
+
+    // Calcula o valor total das vendas
+    vendas.forEach(venda => {
+        valorTotalVendas += venda.quantidade * venda.valor;
+    });
+
+    const outputDiv = document.getElementById('output');
+    outputDiv.textContent = `Valor total das vendas: R$ ${valorTotalVendas.toFixed(2)}`;
+    outputDiv.style.display = 'block';
+}
+    </script>
+</body>
+</html>

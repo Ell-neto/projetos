@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questão 3</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+            margin: 0;
+        }
+
+
+        .code-container, .user-input, .output {
+            margin: 20px auto;
+            width: 70%;
+        }
+    </style>
+</head>
+<body>
+    <div class="questao-page">
+        <h1>Manipulação de Objetos - Questão 3</h1>
+        <p>Objetivo: Dado um objeto produto com várias propriedades, crie uma função que retorna um novo objeto contendo apenas as propriedades cujo valor seja maior que um valor específico. Use <code>for in</code> para filtrar as propriedades.</p>
+
+        <div class="code-container">
+            <pre id="code">
+                function executarCodigo() {
+                    const produto = {
+                        nome: 'Notebook',
+                        preco: 3000,
+                        estoque: 50,
+                        garantia: 24, // meses
+                        peso: 2.5, // kg
+                        desconto: 500,
+                        anoFabricacao: 2022
+                    };
+        
+                    // Determinei um valor limite para o filtro
+                    const valorLimite = 1000;
+        
+                    // Função que filtra as propriedades com valores maiores que o valor limite
+                    function filtrarPropriedades(obj, limite) {
+                        const novoObjeto = {};
+                        for (let propriedade in obj) {
+                            if (obj[propriedade] > limite) {
+                                novoObjeto[propriedade] = obj[propriedade];
+                            }
+                        }
+                        return novoObjeto;
+                    }
+        
+                    // Filtrando as propriedades do objeto produto
+                    const produtoFiltrado = filtrarPropriedades(produto, valorLimite);
+                }
+            </pre>
+            <button class="btn-qst" onclick="executarCodigo()">Executar Código</button>
+        </div>
+
+        <!-- Exibição do resultado -->
+        <div class="output" id="output"></div>
+
+        <a href="/atividades2/" class="btn-qst voltar">Voltar para a página principal</a>
+    </div>
+
+    <script>
+        
+        function executarCodigo() {
+            // Exemplo de objeto produto
+            const produto = {
+                nome: 'Notebook',
+                preco: 3000,
+                estoque: 50,
+                garantia: 24, // meses
+                peso: 2.5, // kg
+                desconto: 500,
+                anoFabricacao: 2022
+            };
+
+            // Valor limite para o filtro
+            const valorLimite = 1000;
+
+            // Função que filtra as propriedades com valores maiores que o valor limite
+            function filtrarPropriedades(obj, limite) {
+                const novoObjeto = {};
+                for (let propriedade in obj) {
+                    if (obj[propriedade] > limite) {
+                        novoObjeto[propriedade] = obj[propriedade];
+                    }
+                }
+                return novoObjeto;
+            }
+
+            // Filtra as propriedades do objeto produto
+            const produtoFiltrado = filtrarPropriedades(produto, valorLimite);
+
+            // Exibe a saída final (objeto filtrado)
+            const outputDiv = document.getElementById('output');
+            outputDiv.textContent = "Objeto filtrado (valores > " + valorLimite + "): \n" + JSON.stringify(produtoFiltrado, null, 2);
+            outputDiv.style.display = 'block';
+        }
+    </script>
+</body>
+</html>

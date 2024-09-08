@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questão 13 - Carrinho de Compras</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: rgb(142, 240, 199);
+            margin: 0;
+        }
+
+
+        .code-container, .output {
+            margin: 20px auto;
+            width: 60%;
+        }
+
+        input[type="text"], input[type="number"] {
+            width: 25%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <div class="questao-page">
+        <h1>Combinação de Estruturas - Questão 13</h1>
+        <p>Objetivo: Crie um objeto carrinho com uma propriedade <strong>itens</strong>, que é um array de objetos. Cada objeto dentro de itens deve representar um produto no carrinho, com nome, quantidade, e preço unitário. Use <code>forEach</code> para calcular o valor total do carrinho.</p>
+
+        <div class="code-container">
+            <pre id="code">
+function executarCodigo() {
+    const carrinho = {
+        itens: [
+            // O array será preenchido com os valores fornecidos pelo usuário
+        ]
+    };
+
+    let total = 0;
+
+    carrinho.itens.forEach(item => {
+        total += item.quantidade * item.precoUnitario;
+    });
+
+    console.log(`Valor total do carrinho: R$ ${total.toFixed(2)}`);
+}
+        </pre>
+
+        <!-- Entrada para o nome do produto, quantidade e preço unitário -->
+        <div class="input-group">
+            <label for="produto">Nome do Produto:</label>
+            <input type="text" id="produto" required>
+        </div>
+        <div class="input-group">
+            <label for="quantidade">Quantidade:</label>
+            <input type="number" id="quantidade" min="1" required>
+        </div>
+        <div class="input-group">
+            <label for="precoUnitario">Preço Unitário:</label>
+            <input type="number" id="precoUnitario" step="0.01" min="0.01" required>
+        </div>
+
+            <button class="btn-qst" onclick="adicionarAoCarrinho()">Adicionar ao Carrinho</button>
+            <button class="btn-qst" onclick="executarCodigo()">Executar Código</button>
+        </div>
+
+        <!-- Exibição dos itens no carrinho -->
+        <div class="carrinho" id="carrinho">
+            <h3>Itens no Carrinho:</h3>
+            <ul id="listaCarrinho"></ul>
+        </div>
+
+        <!-- Exibição do resultado -->
+        <div class="output" id="output"></div>
+
+        <a href="/atividades2/" class="btn-qst voltar">Voltar para a página principal</a>
+    </div>
+
+    <script>
+        const carrinho = { itens: [] };
+
+        function adicionarAoCarrinho() {
+            const produto = document.getElementById('produto').value;
+            const quantidade = parseInt(document.getElementById('quantidade').value);
+            const precoUnitario = parseFloat(document.getElementById('precoUnitario').value);
+
+            if (produto && quantidade > 0 && precoUnitario > 0) {
+                carrinho.itens.push({ produto: produto, quantidade: quantidade, precoUnitario: precoUnitario });
+
+                // Limpa os campos para nova entrada
+                document.getElementById('produto').value = '';
+                document.getElementById('quantidade').value = '';
+                document.getElementById('precoUnitario').value = '';
+
+                // Exibe o carrinho atualizado
+                atualizarCarrinho();
+
+                alert(`Produto ${produto} adicionado ao carrinho!`);
+            } else {
+                alert('Preencha todos os campos corretamente.');
+            }
+        }
+
+        function atualizarCarrinho() {
+            const carrinhoDiv = document.getElementById('carrinho');
+            const listaCarrinho = document.getElementById('listaCarrinho');
+            listaCarrinho.innerHTML = '';
+
+            // Exibe os itens no carrinho
+            carrinho.itens.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = `Produto: ${item.produto} - Quantidade: ${item.quantidade}, Preço Unitário: R$ ${item.precoUnitario.toFixed(2)}`;
+                listaCarrinho.appendChild(li);
+            });
+
+            carrinhoDiv.style.display = 'block';
+        }
+
+        function executarCodigo() {
+            if (carrinho.itens.length === 0) {
+                alert('Nenhum produto adicionado ao carrinho.');
+                return;
+            }
+
+            let total = 0;
+
+            // Calcula o valor total do carrinho
+            carrinho.itens.forEach(item => {
+                total += item.quantidade * item.precoUnitario;
+            });
+
+            const outputDiv = document.getElementById('output');
+            outputDiv.innerHTML = `<h3>Valor Total do Carrinho:</h3><p>R$ ${total.toFixed(2)}</p>`;
+            outputDiv.style.display = 'block';
+        }
+    </script>
+</body>
+</html>

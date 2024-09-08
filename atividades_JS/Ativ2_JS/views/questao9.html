@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questão 9</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: rgb(142, 240, 199);
+            margin: 0;
+        }
+
+        .code-container, .output {
+            margin: 20px auto;
+            width:60%;
+        }
+
+        input[type="text"], input[type="number"] {
+            width: 25%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <div class="questao-page">
+        <h1>Manipulação de Arrays de Objetos - Questão 9</h1>
+        <p>Objetivo: Crie um array de objetos clientes, cada um com propriedades nome, idade e cidade. Use <code>forEach</code> para contar quantos clientes têm mais de 30 anos.</p>
+
+        <div class="code-container">
+            <pre id="code">
+function executarCodigo() {
+    const clientes = [
+        // O array será preenchido com os valores fornecidos pelo usuário
+    ];
+
+    let countMaisDe30 = 0;
+    clientes.forEach(cliente => {
+        if (cliente.idade > 30) {
+            countMaisDe30++;
+        }
+    });
+
+    console.log(`Total de clientes com mais de 30 anos: ${countMaisDe30}`);
+}
+        </pre>
+
+            <label for="totalClientes">Número de clientes:</label>
+            <input type="number" id="totalClientes" min="1" required>
+        </div>
+
+        <!-- Entrada para o nome, idade e cidade dos clientes -->
+        <div id="clientes-input-container"></div>
+
+        <div class="code-container">
+            <button class="btn-qst" onclick="gerarCamposClientes()">Gerar campos para os clientes</button>
+            <button class="btn-qst" onclick="executarCodigo()">Executar Código</button>
+        </div>
+
+        <!-- Exibição do resultado -->
+        <div class="output" id="output"></div>
+
+        <a href="/atividades2/" class="btn-qst voltar">Voltar para a página principal</a>
+    </div>
+
+    <script>
+        let totalClientes = 0;
+
+        function gerarCamposClientes() {
+            totalClientes = parseInt(document.getElementById('totalClientes').value);
+            const clientesContainer = document.getElementById('clientes-input-container');
+            clientesContainer.innerHTML = ''; // Limpa o conteúdo anterior
+
+            for (let i = 1; i <= totalClientes; i++) {
+                const clienteGroup = document.createElement('div');
+                clienteGroup.classList.add('input-group');
+                clienteGroup.innerHTML = `
+                    <label for="nome${i}">Nome do cliente ${i}:</label>
+                    <input type="text" id="nome${i}" required>
+                    <label for="idade${i}">Idade:</label>
+                    <input type="number" id="idade${i}" min="1" required>
+                    <label for="cidade${i}">Cidade:</label>
+                    <input type="text" id="cidade${i}" required>
+                `;
+                clientesContainer.appendChild(clienteGroup);
+            }
+        }
+
+        function executarCodigo() {
+            const clientes = [];
+
+            for (let i = 1; i <= totalClientes; i++) {
+                const nome = document.getElementById(`nome${i}`).value;
+                const idade = parseInt(document.getElementById(`idade${i}`).value);
+                const cidade = document.getElementById(`cidade${i}`).value;
+
+                clientes.push({ nome: nome, idade: idade, cidade: cidade });
+            }
+
+            let countMaisDe30 = 0;
+
+            // Contando quantos clientes têm mais de 30 anos
+            clientes.forEach(cliente => {
+                if (cliente.idade > 30) {
+                    countMaisDe30++;
+                }
+            });
+
+            const outputDiv = document.getElementById('output');
+            outputDiv.textContent = countMaisDe30 ? `Total de clientes com mais de 30 anos: ${countMaisDe30}` : 'Nenhum cliente com mais de 30 anos.';
+            outputDiv.style.display = 'block';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selecione uma Questão</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        form#questaoForm {
+    display: flex;
+    justify-content: space-between;
+    width: 80%; /* Ajuste conforme necessário */
+    max-width: 1200px; /* Ajuste conforme necessário */
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgb(191, 247, 224);
+    border-radius: 30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    width: 30%; /* Ajuste conforme necessário */
+}
+
+button#verQuestao {
+    width: 60%;
+    padding: 10px;
+    background-color: #3e83eb;
+    color: #ffffff;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-top: 20px;
+    margin-left: 60px;
+}
+
+button#verQuestao:hover {
+    background-color: #0056b3;
+}
+    </style>
+</head>
+<body class="index-page">
+    <h1>Selecione uma Questão</h1>
+    <form id="questaoForm">
+        <div class="column">
+        <input type="radio" id="questao1" name="questao" value="questao1">
+        <label for="questao1">Questão 1</label><br>
+        <input type="radio" id="questao2" name="questao" value="questao2">
+        <label for="questao2">Questão 2</label><br>
+        <input type="radio" id="questao3" name="questao" value="questao3">
+        <label for="questao3">Questão 3</label><br>
+        <input type="radio" id="questao4" name="questao" value="questao4">
+        <label for="questao4">Questão 4</label><br>
+        <input type="radio" id="questao5" name="questao" value="questao5">
+        <label for="questao5">Questão 5</label><br>
+    </div>
+    <div class="column">
+        <input type="radio" id="questao6" name="questao" value="questao6">
+        <label for="questao6">Questão 6</label><br>
+        <input type="radio" id="questao7" name="questao" value="questao7">
+        <label for="questao7">Questão 7</label><br>
+        <input type="radio" id="questao8" name="questao" value="questao8">
+        <label for="questao8">Questão 8</label><br>
+        <input type="radio" id="questao9" name="questao" value="questao9">
+        <label for="questao9">Questão 9</label><br>
+        <input type="radio" id="questao10" name="questao" value="questao10">
+        <label for="questao10">Questão 10</label><br>
+        <button type="button" id="verQuestao">Ver Questão</button>
+    </div>
+    <div class="column">
+        <input type="radio" id="questao11" name="questao" value="questao11">
+        <label for="questao11">Questão 11</label><br>
+        <input type="radio" id="questao12" name="questao" value="questao12">
+        <label for="questao12">Questão 12</label><br>
+        <input type="radio" id="questao13" name="questao" value="questao13">
+        <label for="questao13">Questão 13</label><br>
+        <input type="radio" id="questao14" name="questao" value="questao14">
+        <label for="questao14">Questão 14</label><br>
+        <input type="radio" id="questao15" name="questao" value="questao15">
+        <label for="questao15">Questão 15</label><br>
+    </div>
+    </form>
+    <script src="/js/script.js"></script>
+</body>
+</html>

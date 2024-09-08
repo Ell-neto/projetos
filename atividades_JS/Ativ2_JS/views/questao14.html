@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questão 14 - Empresa e Departamentos</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: rgb(142, 240, 199);
+            margin: 0;
+        }
+
+        .code-container, .output {
+            margin: 20px auto;
+            width: 60%;
+        }
+
+        input[type="text"] {
+            width: 25%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <div class="questao-page">
+        <h1>Combinação de Estruturas - Questão 14</h1>
+        <p>Objetivo: Crie um objeto <strong>empresa</strong> com uma propriedade <strong>departamentos</strong>, que é um array de objetos. Cada departamento tem um nome e uma lista de funcionários. Use <code>for...in</code> e <code>for...of</code> para iterar sobre os departamentos e seus funcionários, exibindo o nome de cada funcionário junto com o departamento ao qual pertence.</p>
+
+        <div class="code-container">
+            <pre id="code">
+function executarCodigo() {
+    const empresa = {
+        departamentos: [
+            // O array será preenchido com os valores fornecidos pelo usuário
+        ]
+    };
+
+    for (let departamento in empresa.departamentos) {
+        const dept = empresa.departamentos[departamento];
+        console.log(`Departamento: ${dept.nome}`);
+        for (let funcionario of dept.funcionarios) {
+            console.log(`Funcionário: ${funcionario}`);
+        }
+    }
+}
+        </pre>
+
+        <!-- Entrada para o nome do departamento e nome do funcionário -->
+        <div class="input-group">
+            <label for="departamento">Nome do Departamento:</label>
+            <input type="text" id="departamento" required>
+        </div>
+        <div class="input-group">
+            <label for="funcionario">Nome do Funcionário:</label>
+            <input type="text" id="funcionario" required>
+        </div>
+
+            <button class="btn-qst" onclick="adicionarAoCarrinho()">Adicionar Informações</button>
+            <button class="btn-qst" onclick="executarCodigo()">Executar Código</button>
+        </div>
+
+        <!-- Exibição dos itens no carrinho -->
+        <div class="carrinho" id="carrinho">
+            <h3>Departamentos e Funcionários na Empresa Ell:</h3>
+            <ul id="listaCarrinho"></ul>
+        </div>
+
+        <!-- Exibição do resultado -->
+        <div class="output" id="output"></div>
+
+        <a href="/atividades2/" class="btn-qst voltar">Voltar para a página principal</a>
+    </div>
+
+    <script>
+        const empresa = { departamentos: [] };
+
+        function adicionarAoCarrinho() {
+            const departamento = document.getElementById('departamento').value;
+            const funcionario = document.getElementById('funcionario').value;
+
+            if (departamento && funcionario) {
+                // Verifica se o departamento já existe no array
+                let deptEncontrado = empresa.departamentos.find(d => d.nome === departamento);
+                
+                if (deptEncontrado) {
+                    // Se o departamento já existe, adiciona o funcionário a ele
+                    deptEncontrado.funcionarios.push(funcionario);
+                } else {
+                    // Se o departamento não existe, cria um novo
+                    empresa.departamentos.push({ nome: departamento, funcionarios: [funcionario] });
+                }
+
+                // Limpa os campos para nova entrada
+                document.getElementById('departamento').value = '';
+                document.getElementById('funcionario').value = '';
+
+                // Exibe o carrinho atualizado
+                atualizarCarrinho();
+
+                alert(`Funcionário ${funcionario} adicionado ao departamento ${departamento}!`);
+            } else {
+                alert('Preencha todos os campos corretamente.');
+            }
+        }
+
+        function atualizarCarrinho() {
+            const carrinhoDiv = document.getElementById('carrinho');
+            const listaCarrinho = document.getElementById('listaCarrinho');
+            listaCarrinho.innerHTML = '';
+
+            // Exibe os departamentos e seus funcionários no carrinho
+            empresa.departamentos.forEach(dept => {
+                const li = document.createElement('li');
+                li.textContent = `Departamento: ${dept.nome} - Funcionários: ${dept.funcionarios.join(', ')}`;
+                listaCarrinho.appendChild(li);
+            });
+
+            carrinhoDiv.style.display = 'block';
+        }
+
+        function executarCodigo() {
+            if (empresa.departamentos.length === 0) {
+                alert('Nenhum departamento adicionado ao carrinho.');
+                return;
+            }
+
+            let resultado = '';
+
+            // Itera sobre os departamentos e funcionários
+            for (let departamento in empresa.departamentos) {
+                const dept = empresa.departamentos[departamento];
+                resultado += `<h4>Departamento: ${dept.nome}</h4><ul>`;
+                for (let funcionario of dept.funcionarios) {
+                    resultado += `<ul style="list-style-type: none; padding-left: 0;"> <li>Funcionário: ${funcionario}</li> </ul>`;
+                }
+                resultado += '</ul>';
+            }
+
+            const outputDiv = document.getElementById('output');
+            outputDiv.innerHTML = resultado;
+            outputDiv.style.display = 'block';
+        }
+    </script>
+</body>
+</html>

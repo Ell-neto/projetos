@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questão 4</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: rgb(142, 240, 199);
+            margin: 0;
+        }
+
+
+        .code-container, .user-input, .output {
+            margin: 20px auto;
+            width: 70%;
+        }
+    </style>
+</head>
+<body>
+    <div class="questao-page">
+        <h1>Manipulação de Arrays de Objetos - Questão 4</h1>
+        <p>Objetivo: Crie um array de objetos pessoas, onde cada objeto representa uma pessoa com nome, idade, e cidade. Use <code>for of</code> para exibir as informações de cada pessoa no console.</p>
+
+        
+        <div class="code-container">
+        <pre id="code">
+function executarCodigo() {
+    const pessoas = [
+        { nome: 'Lan', idade: 33, cidade: 'Goiana' },
+        { nome: 'Layne', idade: 30, cidade: 'João Pessoa' },
+        { nome: 'Andreza', idade: 30, cidade: 'Recife' },
+        { nome: 'Josenildo', idade: 24, cidade: 'Condado' },
+        { nome: 'Ana', idade: 28, cidade: 'Recife' }
+    ];
+
+    for (const pessoa of pessoas) {
+        console.log(\`Nome: \${pessoa.nome}, Idade: \${pessoa.idade}, Cidade: \${pessoa.cidade}\`);
+    }
+}
+        </pre>
+            <button class="btn-qst" onclick="executarCodigo()">Executar Código</button>
+            <button class="btn-qst-extra" onclick="ordenarPor('nome')">Ordenar por Nome</button>
+            <button class="btn-qst-extra" onclick="ordenarPor('idade')">Ordenar por Idade</button>
+            <button class="btn-qst-extra" onclick="ordenarPor('cidade')">Ordenar por Cidade</button>
+        </div>
+
+        <div class="output" id="output"></div>
+
+        <a href="/atividades2/" class="btn-qst voltar">Voltar para a página principal</a>
+    </div>
+
+    <script>
+        const pessoas = [
+            { nome: 'Lan', idade: 33, cidade: 'Goiana' },
+            { nome: 'Layne', idade: 30, cidade: 'João Pessoa' },
+            { nome: 'Andreza', idade: 30, cidade: 'Recife' },
+            { nome: 'Josenildo', idade: 24, cidade: 'Condado' },
+            { nome: 'Ana', idade: 28, cidade: 'Recife' }
+        ];
+
+        function executarCodigo() {
+            let resultado = '';
+            for (const pessoa of pessoas) {
+                resultado += `Nome: ${pessoa.nome}, Idade: ${pessoa.idade}, Cidade: ${pessoa.cidade}\n`;
+                console.log(`Nome: ${pessoa.nome}, Idade: ${pessoa.idade}, Cidade: ${pessoa.cidade}`);
+            }
+
+            const outputDiv = document.getElementById('output');
+            outputDiv.textContent = resultado;
+            outputDiv.style.display = 'block';
+        }
+
+        function ordenarPor(campo) {
+            // Faz uma cópia do array e ordena pelo campo especificado
+            const pessoasOrdenadas = [...pessoas].sort((a, b) => {
+                if (a[campo] < b[campo]) return -1;
+                if (a[campo] > b[campo]) return 1;
+                return 0;
+            });
+
+            let resultado = '';
+            for (const pessoa of pessoasOrdenadas) {
+                resultado += `Nome: ${pessoa.nome}, Idade: ${pessoa.idade}, Cidade: ${pessoa.cidade}\n`;
+            }
+
+            const outputDiv = document.getElementById('output');
+            outputDiv.textContent = resultado;
+            outputDiv.style.display = 'block';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questão 15 - Transações</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: rgb(142, 240, 199);
+            margin: 0;
+        }
+
+        .code-container, .output {
+            margin: 20px auto;
+            width: 60%;
+        }
+
+        input[type="number"] {
+            width: 25%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        select {
+            padding: 8px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="questao-page">
+        <h1>Combinação de Estruturas - Questão 15</h1>
+        <p>Objetivo: Crie um array de objetos <strong>transacoes</strong>, onde cada transação tem tipo (entrada ou saída) e valor. Use <code>forEach</code> para calcular o saldo final, somando as entradas e subtraindo as saídas.</p>
+
+        <div class="code-container">
+            <pre id="code">
+function executarCodigo() {
+    let saldo = 0;
+    transacoes.forEach(transacao => {
+        if (transacao.tipo === 'entrada') {
+            saldo += transacao.valor;
+        } else if (transacao.tipo === 'saida') {
+            saldo -= transacao.valor;
+        }
+    });
+    document.getElementById('saldoFinal').textContent = saldo.toFixed(2);
+}
+            </pre>
+
+            <!-- Entrada para o tipo de transação e valor -->
+            <div class="input-group">
+                <label for="tipoTransacao">Tipo de Transação:</label>
+                <select id="tipoTransacao">
+                    <option value="entrada">Entrada</option>
+                    <option value="saida">Saída</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="valorTransacao">Valor:</label>
+                <input type="number" id="valorTransacao" step="0.01" required>
+            </div>
+
+            <button class="btn-qst" onclick="adicionarAoCarrinho()">Adicionar as informações</button>
+            <button class="btn-qst" onclick="executarCodigo()">Executar Código</button>
+        </div>
+
+        <!-- Exibição das transações no extrato -->
+        <div class="carrinho" id="carrinho">
+            <h3>Transações adicionadas:</h3>
+            <ul id="listaCarrinho"></ul>
+        </div>
+
+        <!-- Exibição do saldo final -->
+        <div class="output" id="output">
+            <h3>Saldo Final: R$ <span id="saldoFinal">0.00</span></h3>
+        </div>
+
+        <a href="/atividades2/" class="btn-qst voltar">Voltar para a página principal</a>
+    </div>
+
+    <script>
+        let transacoes = [];
+
+        function adicionarAoCarrinho() {
+            const tipo = document.getElementById('tipoTransacao').value;
+            const valor = parseFloat(document.getElementById('valorTransacao').value);
+
+            if (!isNaN(valor) && valor > 0) {
+                // Adiciona a transação ao array de transações
+                transacoes.push({ tipo: tipo, valor: valor });
+
+                // Atualiza o carrinho visualmente
+                atualizarCarrinho();
+
+                // Limpa o campo de valor
+                document.getElementById('valorTransacao').value = '';
+                
+                alert(`Transação de ${tipo} no valor de R$ ${valor.toFixed(2)} adicionada!`);
+            } else {
+                alert('Insira um valor válido.');
+            }
+        }
+
+        function atualizarCarrinho() {
+            const listaCarrinho = document.getElementById('listaCarrinho');
+            listaCarrinho.innerHTML = '';
+
+            // Exibe as transações no carrinho
+            transacoes.forEach(transacao => {
+                const li = document.createElement('li');
+                li.textContent = `Tipo: ${transacao.tipo}, Valor: R$ ${transacao.valor.toFixed(2)}`;
+                listaCarrinho.appendChild(li);
+            });
+        }
+
+        function executarCodigo() {
+    if (transacoes.length === 0) {
+        alert('Nenhuma transação foi adicionada.');
+        return;
+    }
+
+    let saldo = 0;
+    let detalhesTransacoes = '<h4>Detalhes das Transações:</h4><ul>';
+
+    // Calcula o saldo final e gera o detalhamento das transações
+    transacoes.forEach(transacao => {
+        if (transacao.tipo === 'entrada') {
+            saldo += transacao.valor;
+            detalhesTransacoes += `<li>Entrada: R$ ${transacao.valor.toFixed(2)}</li>`;
+        } else if (transacao.tipo === 'saida') {
+            saldo -= transacao.valor;
+            detalhesTransacoes += `<li>Saída: R$ ${transacao.valor.toFixed(2)}</li>`;
+        }
+    });
+
+    detalhesTransacoes += '</ul>';
+
+    // Atualiza o output com detalhes das transações e o saldo final
+    const outputDiv = document.getElementById('output');
+    outputDiv.innerHTML = `${detalhesTransacoes}<h3>Saldo Final: R$ ${saldo.toFixed(2)}</h3>`;
+    outputDiv.style.display = 'block';
+}
+    </script>
+</body>
+</html>

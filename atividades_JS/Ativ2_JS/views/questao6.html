@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questão 6</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: rgb(142, 240, 199);
+            margin: 0;
+        }
+
+        .code-container, .output {
+            margin: 20px auto;
+            width: 70%;
+        }
+
+        input[type="text"], input[type="number"] {
+            width: 25%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <div class="questao-page">
+        <h1>Manipulação de Arrays de Objetos - Questão 6</h1>
+        <p>Objetivo: Crie um array de objetos funcionários, onde cada objeto contém informações como nome, cargo, e salário. Use <code>for of</code> para filtrar e exibir apenas os funcionários cujo salário seja maior que um valor específico.</p>
+
+        <!-- Exibição do código que será executado -->
+        <div class="code-container">
+            <pre id="code">
+function executarCodigo() {
+    const funcionarios = [
+        // O array será preenchido com os valores fornecidos pelo usuário
+    ];
+
+    const valorEspecifico = (valor do input); // Valor será substituído pelo input do usuário
+
+    for (const funcionario of funcionarios) {
+        if (funcionario.salario > valorEspecifico) {
+            console.log(\`Nome: \${funcionario.nome}, Cargo: \${funcionario.cargo}, Salário: \${funcionario.salario}\`);
+        }
+    }
+}
+        </pre>
+
+        <!-- Entrada do número de funcionários -->
+            <label for="totalFuncionarios">Número de funcionários:</label>
+            <input type="number" id="totalFuncionarios" min="1" required>
+        </div>
+
+        <!-- Entrada para o nome, cargo e salário dos funcionários -->
+        <div id="funcionarios-input-container"></div>
+
+        <!-- Entrada para o valor específico -->
+        <div class="input-group">
+            <label for="valorEspecifico">Valor específico (para filtrar salários):</label>
+            <input type="number" id="valorEspecifico" min="0" required>
+        </div>
+
+        <div class="code-container">
+            <button class="btn-qst" onclick="gerarCamposFuncionarios()">Gerar campos para os funcionários</button>
+            <button class="btn-qst" onclick="executarCodigo()">Executar Código</button>
+        </div>
+
+        <!-- Exibição do resultado -->
+        <div class="output" id="output"></div>
+
+        <a href="/atividades2/" class="btn-qst voltar">Voltar para a página principal</a>
+    </div>
+
+    <script>
+        let totalFuncionarios = 0;
+
+        function gerarCamposFuncionarios() {
+            totalFuncionarios = parseInt(document.getElementById('totalFuncionarios').value);
+            const funcionariosContainer = document.getElementById('funcionarios-input-container');
+            funcionariosContainer.innerHTML = '';
+
+            for (let i = 1; i <= totalFuncionarios; i++) {
+                const funcionarioGroup = document.createElement('div');
+                funcionarioGroup.classList.add('input-group');
+                funcionarioGroup.innerHTML = `
+                    <label for="nome${i}">Nome do funcionário ${i}:</label>
+                    <input type="text" id="nome${i}" required>
+                    <label for="cargo${i}">Cargo:</label>
+                    <input type="text" id="cargo${i}" required>
+                    <label for="salario${i}">Salário:</label>
+                    <input type="number" id="salario${i}" min="0" required>
+                `;
+                funcionariosContainer.appendChild(funcionarioGroup);
+            }
+        }
+
+        function executarCodigo() {
+            const funcionarios = [];
+
+            for (let i = 1; i <= totalFuncionarios; i++) {
+                const nome = document.getElementById(`nome${i}`).value;
+                const cargo = document.getElementById(`cargo${i}`).value;
+                const salario = parseFloat(document.getElementById(`salario${i}`).value);
+
+                funcionarios.push({ nome: nome, cargo: cargo, salario: salario });
+            }
+
+            const valorEspecifico = parseFloat(document.getElementById('valorEspecifico').value);
+            let resultado = '';
+
+            for (const funcionario of funcionarios) {
+                if (funcionario.salario > valorEspecifico) {
+                    resultado += `Nome: ${funcionario.nome}, Cargo: ${funcionario.cargo}, Salário: ${funcionario.salario.toFixed(2)}\n`;
+                }
+            }
+
+            const outputDiv = document.getElementById('output');
+            outputDiv.textContent = resultado.length ? resultado : 'Nenhum funcionário com salário maior que o valor especificado.';
+            outputDiv.style.display = 'block';
+        }
+    </script>
+</body>
+</html>

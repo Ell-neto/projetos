@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questão 11</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: rgb(142, 240, 199);
+            margin: 0;
+        }
+
+        .code-container, .output {
+            margin: 20px auto;
+            width: 60%;
+        }
+
+        input[type="text"], input[type="number"] {
+            width: 25%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <div class="questao-page">
+        <h1>Combinação de Estruturas - Questão 11</h1>
+        <p>Objetivo: Crie um array de objetos pedidos, onde cada pedido tem cliente, produto, e quantidade. Use <code>forEach</code> para criar um objeto que agrupa a quantidade total de produtos por cliente.</p>
+
+        <div class="code-container">
+            <pre id="code">
+function executarCodigo() {
+    const pedidos = [
+        // O array será preenchido com os valores fornecidos pelo usuário
+    ];
+
+    const totalPorCliente = {};
+    pedidos.forEach(pedido => {
+        if (totalPorCliente[pedido.cliente]) {
+            totalPorCliente[pedido.cliente] += pedido.quantidade;
+        } else {
+            totalPorCliente[pedido.cliente] = pedido.quantidade;
+        }
+    });
+
+    console.log(totalPorCliente);
+}
+        </pre>
+
+        <!-- Entrada para o nome do cliente, produto e quantidade -->
+        <div class="input-group">
+            <label for="cliente">Nome do Cliente:</label>
+            <input type="text" id="cliente" required>
+        </div>
+        <div class="input-group">
+            <label for="produto">Nome do Produto:</label>
+            <input type="text" id="produto" required>
+        </div>
+        <div class="input-group">
+            <label for="quantidade">Quantidade:</label>
+            <input type="number" id="quantidade" min="1" required>
+        </div>
+
+            <button class="btn-qst" onclick="adicionarAoCarrinho()">Adicionar ao Carrinho</button>
+            <button class="btn-qst" onclick="executarCodigo()">Executar Código</button>
+        </div>
+
+        <!-- Exibição dos itens no carrinho -->
+        <div class="carrinho" id="carrinho">
+            <h3>Itens no Carrinho:</h3>
+            <ul id="listaCarrinho"></ul>
+        </div>
+
+        <!-- Exibição do resultado -->
+        <div class="output" id="output"></div>
+
+        <a href="/atividades2/" class="btn-qst voltar">Voltar para a página principal</a>
+    </div>
+
+    <script>
+        const pedidos = [];
+
+        function adicionarAoCarrinho() {
+            const cliente = document.getElementById('cliente').value;
+            const produto = document.getElementById('produto').value;
+            const quantidade = parseInt(document.getElementById('quantidade').value);
+
+            if (cliente && produto && quantidade > 0) {
+                pedidos.push({ cliente: cliente, produto: produto, quantidade: quantidade });
+
+                // Limpa os campos para nova entrada
+                document.getElementById('cliente').value = '';
+                document.getElementById('produto').value = '';
+                document.getElementById('quantidade').value = '';
+
+                // Exibe o carrinho atualizado
+                atualizarCarrinho();
+
+                alert(`Pedido de ${produto} para o cliente ${cliente} adicionado ao carrinho!`);
+            } else {
+                alert('Preencha todos os campos corretamente.');
+            }
+        }
+
+        function atualizarCarrinho() {
+            const carrinhoDiv = document.getElementById('carrinho');
+            const listaCarrinho = document.getElementById('listaCarrinho');
+            listaCarrinho.innerHTML = '';
+
+            // Exibe os itens no carrinho
+            pedidos.forEach(pedido => {
+                const item = document.createElement('li');
+                item.textContent = `Cliente: ${pedido.cliente} - Produto: ${pedido.produto}, Quantidade: ${pedido.quantidade}`;
+                listaCarrinho.appendChild(item);
+            });
+
+            carrinhoDiv.style.display = 'block';
+        }
+
+        function executarCodigo() {
+            if (pedidos.length === 0) {
+                alert('Nenhum pedido adicionado ao carrinho.');
+                return;
+            }
+
+            const totalPorCliente = {};
+
+            // Agrupa a quantidade total de produtos por cliente
+            pedidos.forEach(pedido => {
+                if (totalPorCliente[pedido.cliente]) {
+                    totalPorCliente[pedido.cliente] += pedido.quantidade;
+                } else {
+                    totalPorCliente[pedido.cliente] = pedido.quantidade;
+                }
+            });
+
+            const outputDiv = document.getElementById('output');
+            outputDiv.innerHTML = '<h3>Total de Produtos por Cliente:</h3>';
+            for (const cliente in totalPorCliente) {
+                outputDiv.innerHTML += `<p>${cliente}: ${totalPorCliente[cliente]} produtos</p>`;
+            }
+            outputDiv.style.display = 'block';
+        }
+    </script>
+</body>
+</html>

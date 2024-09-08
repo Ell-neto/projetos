@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questão 5</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: rgb(142, 240, 199);
+            margin: 0;
+        }
+
+
+        .code-container, .output {
+            margin: 20px auto;
+            width: 50%;
+        }
+
+
+        input[type="text"], input[type="number"] {
+            width: 25%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <div class="questao-page">
+        <h1>Manipulação de Arrays de Objetos - Questão 5</h1>
+        <p>Objetivo: Crie um array de objetos alunos, cada um com propriedades nome, nota1, e nota2. Use <code>for of</code> para calcular a média das notas de cada aluno e exibir o nome do aluno junto com sua média.</p>
+
+        <div class="code-container">
+            <pre id="code">
+function executarCodigo() {
+    const alunos = [
+        // O array será preenchido com os valores fornecidos pelo usuário
+    ];
+
+    for (const aluno of alunos) {
+        const media = (aluno.nota1 + aluno.nota2) / 2;
+        console.log(\`Nome: \${aluno.nome}, Média: \${media}\`);
+    }
+}
+        </pre>
+
+        <!-- Entrada do número de alunos -->
+            <label for="totalAlunos">Número de alunos:</label>
+            <input type="number" id="totalAlunos" min="1" required>
+        </div>
+
+        <!-- Entrada para o nome, nota1 e nota2 dos alunos -->
+        <div id="alunos-input-container"></div>
+
+        <div class="code-container">
+            <button class="btn-qst" onclick="gerarCamposAlunos()">Gerar campos para os alunos</button>
+            <button class="btn-qst" onclick="executarCodigo()">Executar Código</button>
+        </div>
+
+        <!-- Exibição do resultado -->
+        <div class="output" id="output"></div>
+
+        <a href="/atividades2/" class="btn-qst voltar">Voltar para a página principal</a>
+    </div>
+
+    <script>
+        let totalAlunos = 0;
+
+        function gerarCamposAlunos() {
+            totalAlunos = parseInt(document.getElementById('totalAlunos').value);
+            const alunosContainer = document.getElementById('alunos-input-container');
+            alunosContainer.innerHTML = ''; // Limpa o conteúdo anterior
+
+            for (let i = 1; i <= totalAlunos; i++) {
+                const alunoGroup = document.createElement('div');
+                alunoGroup.classList.add('input-group');
+                alunoGroup.innerHTML = `
+                    <label for="nome${i}">Nome do aluno ${i}:</label>
+                    <input type="text" id="nome${i}" required>
+                    <label for="nota1${i}">Nota 1:</label>
+                    <input type="number" id="nota1${i}" min="0" max="10" step="0.1" required>
+                    <label for="nota2${i}">Nota 2:</label>
+                    <input type="number" id="nota2${i}" min="0" max="10" step="0.1" required>
+                `;
+                alunosContainer.appendChild(alunoGroup);
+            }
+        }
+
+        function executarCodigo() {
+            const alunos = [];
+
+            for (let i = 1; i <= totalAlunos; i++) {
+                const nome = document.getElementById(`nome${i}`).value;
+                const nota1 = parseFloat(document.getElementById(`nota1${i}`).value);
+                const nota2 = parseFloat(document.getElementById(`nota2${i}`).value);
+
+                alunos.push({ nome: nome, nota1: nota1, nota2: nota2 });
+            }
+
+            let resultado = '';
+            for (const aluno of alunos) {
+                const media = (aluno.nota1 + aluno.nota2) / 2;
+                resultado += `Nome: ${aluno.nome}, Média: ${media.toFixed(2)}\n`;
+                console.log(`Nome: ${aluno.nome}, Média: ${media.toFixed(2)}`);
+            }
+
+            const outputDiv = document.getElementById('output');
+            outputDiv.textContent = resultado;
+            outputDiv.style.display = 'block';
+        }
+    </script>
+</body>
+</html>

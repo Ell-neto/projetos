@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questão 1</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body class="questao-page">
+    <h1>Manipulação de Objetos - Questão 1</h1>
+    <p>Objetivo: Crie um objeto carro com propriedades como marca, modelo, ano, e cor. Use <code>for in</code> para iterar sobre as propriedades e exibir seus valores no console.</p>
+
+    <div class="code-container">
+        <pre id="code">
+const carro = {
+    marca: 'Toyota',
+    modelo: 'Corolla',
+    ano: 2021,
+    cor: 'Preto'
+};
+
+for (const propriedade in carro) {
+    console.log(propriedade + ': ' + carro[propriedade]);
+}
+        </pre>
+        <button class="btn-qst" onclick="executarCodigo()">Executar Código</button>
+    </div>
+
+    <div class="output" id="output"></div>
+
+    <a href="/atividades2/" class="btn-qst voltar">Voltar para a página principal</a>
+
+    <script>
+        function executarCodigo() {
+            const carro = {
+                marca: 'Toyota',
+                modelo: 'Corolla',
+                ano: 2021,
+                cor: 'Preto'
+            };
+
+            const resultado = [];
+            for (const propriedade in carro) {
+                resultado.push(propriedade + ': ' + carro[propriedade]);
+            }
+
+            const outputDiv = document.getElementById('output');
+            outputDiv.textContent = resultado.join('\n');
+            outputDiv.style.display = 'block'; // Mostra a caixa de resultado
+        }
+    </script>
+</body>
+</html>
