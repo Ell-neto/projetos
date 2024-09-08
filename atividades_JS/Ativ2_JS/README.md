@@ -43,15 +43,22 @@ Após isso, criamos no diretório raiz do projeto:
 
 1 - Arquivo app.js:
 O arquivo principal que inicializa o servidor Express e configura as rotas e middlewares.
+
 2 - A pasta routes/ e o arquivo questoes2.js.
+
 3 - A pasta controllers/ e o arquivo questoesController.js.
+
 4 - A pasta views/ e adicione os arquivos HTML.
+
 5 - A pasta public/: Pasta para arquivos estáticos (CSS, JS). 
+
     5a - A pasta public/css/ e o arquivo styles.css, o arquivo de estilização.
+
     5b - A pasta public/js/ e o arquivo script.js, que é para:
 Capturar o clique no botão "Ver Questão".
 Verificar qual botão de rádio foi selecionado.
 Redirecionar para a URL correta se uma questão foi selecionada. Caso contrário, exibe um alerta.
+
 6 - A pasta Imgs ao mesmo nível das pastas public, views, e controllers, para mostrar imagens relacionadas ao projeto.
 
 URL de visualização do conteúdo: http://localhost:3000/atividades2/
