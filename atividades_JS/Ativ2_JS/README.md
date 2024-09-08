@@ -68,8 +68,10 @@ URL de visualização do conteúdo: http://localhost:3000/atividades2/
 
 
 Ativ2_JS/
+
 │
 ├── app.js
+
 ├── package.json
 ├── Imgs
 ├── public/
