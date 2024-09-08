@@ -61,7 +61,7 @@ Redirecionar para a URL correta se uma questão foi selecionada. Caso contrário
 
 6 - A pasta Imgs ao mesmo nível das pastas public, views, e controllers, para mostrar imagens relacionadas ao projeto.
 
-URL de visualização do conteúdo: http://localhost:3000/atividades2/
+URL de visualização do conteúdo (que funciona após rodar o código localmente, óbvio): http://localhost:3000/atividades2/
 
 PDF para consulta da atividade 2, [clique aqui](https://github.com/Ell-neto/projetos/blob/main/atividades_JS/Ativ2_JS/atv2.pdf).
 
