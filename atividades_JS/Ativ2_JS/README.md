@@ -63,7 +63,7 @@ Redirecionar para a URL correta se uma questão foi selecionada. Caso contrário
 
 URL de visualização do conteúdo (que funciona após rodar o código localmente, óbvio): http://localhost:3000/atividades2/
 
-PDF para consulta da atividade 2, [clique aqui](https://github.com/Ell-neto/projetos/blob/main/atividades_JS/Ativ2_JS/atv2.pdf).
+PDF para consulta da atividade 2, [clique aqui](https://github.com/Ell-neto/projetos/blob/main/atividades_JS/Ativ2_JS/ativ2.pdf).
 
 -------------------------------------------------------------------------------------------------
 **A Estrutura que você pode seguir**:
